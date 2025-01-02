@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:rx_manager/view/login_screen.dart';
+import 'package:rx_manager/services/auth/auth_gate.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +22,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal)),
         debugShowCheckedModeBanner: false,
-        home: LoginScreen());
+        home: AuthGate());
   }
 }

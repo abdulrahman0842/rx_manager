@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rx_manager/components/custom_text_form_field.dart';
+import 'package:rx_manager/widgets/custom_text_form_field.dart';
 import 'package:rx_manager/services/auth/auth_service.dart';
 import 'package:rx_manager/view/home_screen.dart';
 
@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Center(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        width: MediaQuery.sizeOf(context).width * 0.4,
+        width: MediaQuery.sizeOf(context).width * 0.8,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,

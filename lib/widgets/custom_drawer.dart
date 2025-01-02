@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rx_manager/view/forms/new_medicine_form.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -21,26 +20,26 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.add),
             title: Text('Add Medicine'),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NewMedicineForm()));
-            },
+            // onTap: () {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => NewMedicineForm()));
+            // },
           ),
           ListTile(
             leading: Icon(Icons.edit),
             title: Text('Edit Medicine'),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NewMedicineForm()));
-            },
+            // onTap: () {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => NewMedicineForm()));
+            // },
           ),
           ListTile(
             leading: Icon(Icons.delete),
             title: Text('Delete Medicine'),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NewMedicineForm()));
-            },
+            // onTap: () {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => NewMedicineForm()));
+            // },
           ),
         ],
       ),

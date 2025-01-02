@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:rx_manager/components/custom_drawer.dart';
+import 'package:rx_manager/models/medicine.dart';
+import 'package:rx_manager/widgets/custom_drawer.dart';
 import 'package:rx_manager/services/inventory/medicine_service.dart';
+import 'package:rx_manager/widgets/medicine_form.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,14 +29,30 @@ class _HomeScreenState extends State<HomeScreen> {
             if (snapshot.hasError) {
               return Center(child: Text('An error occurred'));
             }
+            log(snapshot.data.toString());
             return ListView.builder(
                 itemCount: snapshot.data?.length ?? 0,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(snapshot.data?[index]['name']),
-                    subtitle: Text(snapshot.data?[index]['company']),
-                    // trailing: DropdowmM,
+                  final Medicine medicine = Medicine(
+                    snapshot.data?[index]['name'],
+                    snapshot.data?[index]['company'],
+                    snapshot.data?[index]['content'],
+                    snapshot.data?[index]['storage'],
+                    snapshot.data?[index]['stock'],
                   );
+                  return ListTile(
+                      onLongPress: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MedicineForm(
+                                      isEditing: true,
+                                      medicine: medicine,
+                                    )));
+                      },
+                      title: Text(snapshot.data?[index]['name']),
+                      subtitle: Text(snapshot.data?[index]['company']),
+                      trailing: Text(snapshot.data?[index]['id']));
                 });
           }),
       drawer: CustomDrawer(),
