@@ -60,21 +60,20 @@ class _MedicineFormState extends State<MedicineForm> {
                   // Add the logic to save the medicine to the database
                   try {
                     if (widget.isEditing) {
-                      MedicineService().updateMedicine(
-                          Medicine(
-                              _nameController.text,
-                              _companyController.text,
-                              _contentController.text,
-                              _storageController.text,
-                              _stockController.text),
-                          widget.medicine?.id ?? '');
+                      MedicineService().updateMedicine(Medicine(
+                          id: widget.medicine!.id!,
+                          name: _nameController.text,
+                          company: _companyController.text,
+                          content: _contentController.text,
+                          storage: _storageController.text,
+                          stock: _stockController.text));
                     } else {
                       MedicineService().addMedicine(Medicine(
-                          _nameController.text,
-                          _companyController.text,
-                          _contentController.text,
-                          _storageController.text,
-                          _stockController.text));
+                          name: _nameController.text,
+                          company: _companyController.text,
+                          content: _contentController.text,
+                          storage: _storageController.text,
+                          stock: _stockController.text));
                     }
                   } catch (e) {
                     showDialog(
@@ -102,12 +101,12 @@ class _MedicineFormState extends State<MedicineForm> {
                   //     });
 
                   // Navigate back to the home screen
-                  // Navigator.pop(context);
+                  Navigator.pop(context);
                 },
                 child: Container(
                   alignment: Alignment.center,
                   width: MediaQuery.sizeOf(context).width * 0.45,
-                  height: MediaQuery.sizeOf(context).height * 0.06,
+                  height: MediaQuery.sizeOf(context).height * 0.08,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: Colors.teal.shade800),

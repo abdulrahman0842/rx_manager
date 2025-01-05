@@ -29,18 +29,20 @@ class _HomeScreenState extends State<HomeScreen> {
             if (snapshot.hasError) {
               return Center(child: Text('An error occurred'));
             }
+            if (snapshot.data == null || snapshot.data!.isEmpty) {
+              return Center(
+                child: Text('No Medicines available'),
+              );
+            }
             log(snapshot.data.toString());
             return ListView.builder(
                 itemCount: snapshot.data?.length ?? 0,
                 itemBuilder: (context, index) {
-                  final Medicine medicine = Medicine(
-                    snapshot.data?[index]['name'],
-                    snapshot.data?[index]['company'],
-                    snapshot.data?[index]['content'],
-                    snapshot.data?[index]['storage'],
-                    snapshot.data?[index]['stock'],
-                  );
+                  final Medicine medicine = snapshot.data![index];
                   return ListTile(
+                      onTap: () {
+                        MedicineService().deleteMedicine(medicine.id!);
+                      },
                       onLongPress: () {
                         Navigator.push(
                             context,
@@ -50,9 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       medicine: medicine,
                                     )));
                       },
-                      title: Text(snapshot.data?[index]['name']),
-                      subtitle: Text(snapshot.data?[index]['company']),
-                      trailing: Text(snapshot.data?[index]['id']));
+                      title: Text(medicine.name),
+                      subtitle: Text(medicine.company),
+                      trailing: Text(medicine.id ?? ''));
                 });
           }),
       drawer: CustomDrawer(),
