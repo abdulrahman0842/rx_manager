@@ -5,6 +5,17 @@ class MedicineManagerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    double width = MediaQuery.of(context).size.width;
+    return Scaffold(body: LayoutBuilder(builder: (context, constraint) {
+      return Expanded(
+          child: Row(
+        children: [
+          Container(
+            width: width * 0.3,
+            color: Colors.grey,
+          )
+        ],
+      ));
+    }));
   }
 }

@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rx_manager/services/auth/auth_gate.dart';
 import 'package:rx_manager/services/hover_state.dart';
+import 'package:rx_manager/utils/routes/app_router.dart';
 import 'package:rx_manager/utils/theme.dart';
 
 void main() async {
@@ -25,10 +25,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        initialRoute: '/',
-        theme: appTheme,
-        debugShowCheckedModeBanner: false,
-        home: AuthGate());
+    return MaterialApp.router(
+      routerConfig: appRouter,
+      theme: appTheme,
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

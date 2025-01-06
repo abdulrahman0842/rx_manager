@@ -1,10 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rx_manager/services/auth/auth_service.dart';
 import 'package:rx_manager/services/hover_state.dart';
+import 'package:rx_manager/utils/managers_list.dart';
 import 'package:rx_manager/utils/utils.dart';
+import 'package:rx_manager/widgets/feature_manager_card.dart';
 import 'package:rx_manager/widgets/small_button.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,16 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Map<String, dynamic>> managers = [
-    {'icon': Icons.business, 'label': 'Agency Manager'},
-    {'icon': Icons.domain, 'label': 'Company Manager'},
-    {'icon': Icons.category, 'label': 'Content Manager'},
-    {'icon': Icons.medical_services, 'label': 'Medicine Manager'},
-    {'icon': Icons.shopping_cart, 'label': 'Purchase Bill Manager'},
-    {'icon': Icons.receipt, 'label': 'Sales Bill Manager'},
-    {'icon': Icons.storage, 'label': 'Storage Manager'},
-  ];
-
   // late List<bool> hoverState;
   ValueNotifier<List<bool>> hoverState =
       ValueNotifier<List<bool>>(List.filled(7, false));
@@ -61,9 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
                       childAspectRatio: 1),
-                  itemCount: managers.length,
+                  itemCount: managersList.length,
                   itemBuilder: (context, index) {
-                    var manager = managers[index];
+                    var manager = managersList[index];
                     return Consumer<HoverState>(
                         builder: (context, hoverState, _) {
                       return MouseRegion(
@@ -74,52 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             hoverState.setHover(index, false);
                           },
                           child: FeatureManagerCard(
-                              manager: manager,
-                              constraint: constraint,
-                              isHovered: hoverState.hoverState[index]));
+                            manager: manager,
+                            constraint: constraint,
+                            isHovered: hoverState.hoverState[index],
+                          ));
                     });
                   });
             },
           ),
         ),
       ),
-    );
-  }
-}
-
-class FeatureManagerCard extends StatelessWidget {
-  const FeatureManagerCard({
-    super.key,
-    required this.manager,
-    required this.constraint,
-    required this.isHovered,
-  });
-
-  final Map<String, dynamic> manager;
-  final BoxConstraints constraint;
-  final bool isHovered;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: isHovered ? 12 : 6,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      color: isHovered ? Colors.teal[300] : Colors.white,
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 8,
-          children: [
-            Icon(
-              manager['icon'],
-              color: isHovered ? Colors.white : Theme.of(context).primaryColor,
-              size: constraint.maxWidth < 600 ? 25 : 35,
-            ),
-            Text(manager['label'],
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: constraint.maxWidth < 600 ? 12 : 14,
-                    color: isHovered ? Colors.white : Colors.black)),
-          ]),
     );
   }
 }
