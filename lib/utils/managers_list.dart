@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rx_manager/models/manager.dart';
+import 'package:rx_manager/utils/routes/route_names.dart';
 
 List<Manager> managersList = [
   Manager(icon: Icons.business, label: 'Agency Manager', routePath: ''),
@@ -8,7 +9,7 @@ List<Manager> managersList = [
   Manager(
       icon: Icons.medical_services,
       label: 'Medicine Manager',
-      routePath: '/medicineManager'),
+      routePath: RouteNames.medicineManager),
   Manager(
       icon: Icons.shopping_cart, label: 'Purchase Bill Manager', routePath: ''),
   Manager(icon: Icons.receipt, label: 'Sales Bill Manager', routePath: ''),

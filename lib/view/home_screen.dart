@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rx_manager/services/auth/auth_service.dart';
-import 'package:rx_manager/services/hover_state.dart';
+import 'package:rx_manager/providers/hover_state.dart';
 import 'package:rx_manager/utils/managers_list.dart';
 import 'package:rx_manager/utils/utils.dart';
 import 'package:rx_manager/widgets/feature_manager_card.dart';
@@ -15,10 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // late List<bool> hoverState;
-  ValueNotifier<List<bool>> hoverState =
-      ValueNotifier<List<bool>>(List.filled(7, false));
-
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.sizeOf(context).width;

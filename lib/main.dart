@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rx_manager/services/hover_state.dart';
+import 'package:rx_manager/providers/hover_state.dart';
+import 'package:rx_manager/providers/medicine_manager_state.dart';
 import 'package:rx_manager/utils/routes/app_router.dart';
 import 'package:rx_manager/utils/theme.dart';
 
@@ -16,7 +17,8 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => HoverState(),
-    )
+    ),
+    ChangeNotifierProvider(create: (context) => MedicineManagerState())
   ], child: const MyApp()));
 }
 

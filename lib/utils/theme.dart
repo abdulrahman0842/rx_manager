@@ -38,3 +38,8 @@ final ThemeData appTheme = ThemeData(
     ),
   ),
 );
+
+const Color primaryColor = Color(0xFF009688); // Teal
+const Color secondaryColor = Color(0xFF80CBC4); // Light Teal
+const Color backgroundColor = Color(0xFFF5F5F5); // Light Grey
+const Color cardColor = Colors.white;
