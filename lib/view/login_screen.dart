@@ -16,6 +16,31 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
+  final FocusNode emailNode = FocusNode();
+  final FocusNode passwordNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    /*
+    WidgetsBinding.instance.addPostFrameCallback is often used to perform actions after the widget tree has been built and the UI is rendered.
+    
+    When you register a callback using addPostFrameCallback, Flutter queues it to be executed after the current frame is drawn, meaning it happens once the UI update is complete.
+    */
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      emailNode.requestFocus();
+    });
+  }
+
+  @override
+  void dispose() {
+    emailNode.dispose();
+    passwordNode.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,11 +73,15 @@ class _LoginScreenState extends State<LoginScreen> {
               CustomTextFormField(
                 controller: _emailController,
                 hintText: 'Enter Email',
+                currentNode: emailNode,
+                nextNode: passwordNode,
               ),
               CustomTextFormField(
                 controller: _passwordController,
                 hintText: 'Enter Password',
                 isObscure: true,
+                currentNode: passwordNode,
+                nextNode: null,
               ),
               CustomButton(
                 label: 'Login',

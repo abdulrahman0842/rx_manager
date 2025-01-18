@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rx_manager/view/medicine_manager/update_medicine.dart';
+import 'package:rx_manager/view/medicine_manager/medicine_list.dart';
 import 'package:rx_manager/widgets/medicine_form.dart';
 
 class MedicineManagerState extends ChangeNotifier {
@@ -8,10 +8,15 @@ class MedicineManagerState extends ChangeNotifier {
 
   final List<Widget> _medicineManagerWidgets = [
     MedicineForm(isEditing: false),
-    UpdateMedicine(),
-    Center(
-      child: Text('Delete Medicine'),
-    )
+    MedicineList(
+      isDeleting: true,
+    ),
+    MedicineList(
+      isEditing: true,
+    ),
+    MedicineList(
+      isViewing: true,
+    ),
   ];
   List<Widget> get medicineManagerWidgets => _medicineManagerWidgets;
 

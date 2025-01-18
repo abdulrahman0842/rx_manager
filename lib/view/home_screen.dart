@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
               AuthService().logout();
               Future.delayed(Duration(seconds: 2));
-              Navigator.pop(context);
+
               Utils.flushBarSuccessMessage("Logout Successful", context);
             },
           ),

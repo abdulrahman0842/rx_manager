@@ -45,4 +45,10 @@ class Utils {
           maxWidth: MediaQuery.of(context).size.width * 0.5,
         )..show(context));
   }
+
+  static void changeFocus(
+      BuildContext context, FocusNode currentNode, FocusNode nextNode) {
+    currentNode.unfocus();
+    FocusScope.of(context).requestFocus(nextNode);
+  }
 }

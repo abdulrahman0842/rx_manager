@@ -41,5 +41,7 @@ final ThemeData appTheme = ThemeData(
 
 const Color primaryColor = Color(0xFF009688); // Teal
 const Color secondaryColor = Color(0xFF80CBC4); // Light Teal
+
+const Color buttonHighlightColor = Color.fromARGB(255, 42, 190, 176);
 const Color backgroundColor = Color(0xFFF5F5F5); // Light Grey
 const Color cardColor = Colors.white;

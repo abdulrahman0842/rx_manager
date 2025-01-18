@@ -51,6 +51,7 @@ class MedicineService {
         'storage': medicine.storage,
         'stock': medicine.stock
       });
+      log('Updated Called');
     } catch (e) {
       throw Exception(e);
     }

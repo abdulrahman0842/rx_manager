@@ -19,6 +19,7 @@ class SmallButton extends StatelessWidget {
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Text(
           label,
+          textScaler: MediaQuery.of(context).textScaler,
           style: TextStyle(color: Colors.black),
         ),
       ),
