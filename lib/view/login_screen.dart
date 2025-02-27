@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:rx_manager/utils/utils.dart';
-import 'package:rx_manager/widgets/custom_button.dart';
 import 'package:rx_manager/widgets/custom_text_form_field.dart';
 import 'package:rx_manager/services/auth/auth_service.dart';
 import 'package:rx_manager/view/home_screen.dart';
@@ -18,6 +19,24 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode emailNode = FocusNode();
   final FocusNode passwordNode = FocusNode();
+
+  Future<void> login() async {
+    log("message");
+    try {
+      await AuthService().loginWithEmailAndPassword(
+          _emailController.text, _passwordController.text);
+
+      if (context.mounted) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        Utils.flushBarSuccessMessage('Welcome back!', context);
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Utils.showFlushBarErrorMessage(e.toString(), context);
+      }
+    }
+  }
 
   @override
   void initState() {
@@ -82,28 +101,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 isObscure: true,
                 currentNode: passwordNode,
                 nextNode: null,
+                onSubmitted: login,
               ),
-              CustomButton(
-                label: 'Login',
-                onTap: () async {
-                  try {
-                    await AuthService().loginWithEmailAndPassword(
-                        _emailController.text, _passwordController.text);
-
-                    if (context.mounted) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
-                      Utils.flushBarSuccessMessage('Welcome back!', context);
-                    }
-                  } catch (e) {
-                    if (context.mounted) {
-                      Utils.showFlushBarErrorMessage(e.toString(), context);
-                    }
-                  }
-                },
-              )
+              ElevatedButton(
+                  onPressed: () {
+                    login();
+                    log('Login');
+                  },
+                  child: Text('Login')),
             ],
           ),
         ),

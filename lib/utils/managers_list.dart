@@ -5,7 +5,10 @@ import 'package:rx_manager/utils/routes/route_names.dart';
 List<Manager> managersList = [
   Manager(icon: Icons.business, label: 'Agency Manager', routePath: ''),
   Manager(icon: Icons.domain, label: 'Company Manager', routePath: ''),
-  Manager(icon: Icons.category, label: 'Content Manager', routePath: ''),
+  Manager(
+      icon: Icons.medication_liquid_outlined,
+      label: 'Content Manager',
+      routePath: RouteNames.contentManager),
   Manager(
       icon: Icons.medical_services,
       label: 'Medicine Manager',
