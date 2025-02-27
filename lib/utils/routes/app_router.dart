@@ -1,10 +1,13 @@
 import 'package:go_router/go_router.dart';
-import 'package:rx_manager/services/auth/auth_gate.dart';
-import 'package:rx_manager/utils/routes/route_names.dart';
-import 'package:rx_manager/view/content_manager/content_manager_screen.dart';
-import 'package:rx_manager/view/home_screen.dart';
-import 'package:rx_manager/view/login_screen.dart';
-import 'package:rx_manager/view/medicine_manager/medicine_manager_screen.dart';
+import 'package:rx_manager/view/test.dart';
+
+import '../../services/auth/auth_gate.dart';
+import '../../view/content_manager/content_manager_screen.dart';
+import '../../view/home_screen.dart';
+import '../../view/login_screen.dart';
+import '../../view/medicine_manager/medicine_manager_screen.dart';
+import '../../view/storage_manager/storage_manager_screen.dart';
+import 'route_names.dart';
 
 final GoRouter appRouter = GoRouter(routes: [
   GoRoute(path: RouteNames.authGate, builder: (context, state) => AuthGate()),
@@ -15,5 +18,9 @@ final GoRouter appRouter = GoRouter(routes: [
       builder: (context, state) => MedicineManagerScreen()),
   GoRoute(
       path: RouteNames.contentManager,
-      builder: (context, state) => ContentManagerScreen())
+      builder: (context, state) => ContentManagerScreen()),
+  GoRoute(
+      path: RouteNames.storageManager,
+      builder: (context, state) => StorageManagerScreen()),
+  GoRoute(path: RouteNames.test, builder: (context, state) => Testin())
 ]);

@@ -4,4 +4,6 @@ class RouteNames {
   static const login = '/login_screen';
   static const medicineManager = '/medicine_manager_screen';
   static const contentManager = '/content_manager_screen';
+  static const storageManager = '/storage_manager_screen';
+  static const test = "/test_page";
 }
